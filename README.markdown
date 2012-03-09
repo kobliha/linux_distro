@@ -12,6 +12,23 @@ Linux distributions, this library should provide an information
 
 Currently just in a 'proof of concept' state
 
+##Usage
+
+  LinuxDistro::suse?
+  -> true
+
+  LinuxDistro::distro
+  -> "suse"
+
+##Known Distros
+
+LinuxDistro currently knows these distributions
+
+* Fedora
+* SUSE
+* CentOS
+* Mandriva
+
 ##How Are the Distros Recognized
 
     /etc/fedora-release         --> Fedora
