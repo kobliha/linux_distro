@@ -1,0 +1,14 @@
+#!/usr/bin/ruby
+
+require "../lib/linux_distro"
+
+def yes_no (yes_no)
+  yes_no ? "Oh, Yes!" : "Nope"
+end
+
+puts "Is this Fedora?        #{yes_no(LinuxDistro::fedora?)}"
+puts "Is this SUSE?          #{yes_no(LinuxDistro::suse?)}"
+puts "Is this CentOS?        #{yes_no(LinuxDistro::centos?)}"
+puts "Is this Mandriva?      #{yes_no(LinuxDistro::mandriva?)}"
+
+puts "Detected distro:       #{LinuxDistro::distro}"
