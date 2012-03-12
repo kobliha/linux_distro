@@ -14,13 +14,13 @@ Currently just in a 'proof of concept' state
 
 ##Usage
 
-  # Boolean function for each known distribution
-  LinuxDistro::suse?
-  -> true
+    # Boolean function for each known distribution
+    LinuxDistro::suse?
+    -> true
 
-  # Returns a symbol
-  LinuxDistro::distro
-  -> suse
+    # Returns a symbol
+    LinuxDistro::distro
+    -> suse
 
 ##Known Distros
 
