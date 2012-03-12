@@ -2,36 +2,32 @@ require 'test/unit'
 require 'linux_distro'
 require 'ftools'
 require 'rubygems'
-require 'mocha'
 
 class LinuxDistroTest < Test::Unit::TestCase
   def teardown
-    Mocha::Mockery.instance.stubba.unstub_all
     LinuxDistro::send :reset
   end
 
   ### HELPER METHODS ###
 
-  FILE_METHOD_DISTROS = [
-    LinuxDistro::D_FEDORA,
-    LinuxDistro::D_SUSE,
-    LinuxDistro::D_CENTOS,
-    LinuxDistro::D_MANDRIVA,
-  ]
+  CHROOT_DATA_DIR = File.join(File.dirname(__FILE__), 'data')
 
-  ALL_DISTROS = FILE_METHOD_DISTROS
+  # Consists of pairs
+  #   distro : path_to_chroot (data needed to recognize the distro)
+  KNOWN_DISTROS = {
+    LinuxDistro::D_FEDORA      => File.join(CHROOT_DATA_DIR, 'Fedora/16'),
+    LinuxDistro::D_SUSE        => File.join(CHROOT_DATA_DIR, 'openSUSE/12.1'),
+    LinuxDistro::D_CENTOS      => File.join(CHROOT_DATA_DIR, 'CentOS/6.2'),
+    LinuxDistro::D_MANDRIVA    => File.join(CHROOT_DATA_DIR, 'Mandriva/2011.0'),
+  }
 
   def set_distro (distro)
-    if FILE_METHOD_DISTROS.include?(distro)
-      distro_file = LinuxDistro::DISTRO_FILES[distro]
-      File.stubs(:exists?).with(anything).returns(false)
-      File.stubs(:exists?).with(distro_file).returns(true)
-      # setup is finished
-      return
+    unless KNOWN_DISTROS[distro]
+      # Unknown distribution
+      raise NotImplementedError, "Your distribution '#{distro}' is unknown to this testcase"
     end
 
-    # Unknown distribution
-    raise NotImplementedError, "Your distribution '#{distro}' is unknown to this testcase"
+    LinuxDistro::chroot = KNOWN_DISTROS[distro]
   end
 
   ### TESTS ###
@@ -61,11 +57,10 @@ class LinuxDistroTest < Test::Unit::TestCase
   end
 
   def test_distro
-    ALL_DISTROS.each do |distro|
+    KNOWN_DISTROS.each do |distro, chroot_dir|
       set_distro distro
+
       assert_equal distro, LinuxDistro::distro, "Should return #{distro}, Distro is: #{LinuxDistro::distro}"
-      # Needed for LinuxDistro to reinitialize
-      teardown
     end
   end
 
