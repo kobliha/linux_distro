@@ -14,6 +14,18 @@ module LinuxDistro
     D_MANDRIVA  => '/etc/mandriva-release',
   }
 
+  def self.chroot=(directory)
+    if ! File.exists? directory
+      raise "Directory '#{directory}' does not exist"
+    elsif ! File.directory? directory
+      raise "'#{directory}' is not a directory"
+    end
+
+    # lirary needs to be reinitialized
+    reset
+    @chroot = directory
+  end
+
   def self.distro
     init
 
@@ -41,6 +53,8 @@ module LinuxDistro
   def self.detect_distro
     # 1.) Simply detect files
     DISTRO_FILES.each do |distro, file|
+      file = File.join(@chroot, file) if @chroot
+
       return distro if File.exists? file
     end
 
@@ -52,9 +66,10 @@ module LinuxDistro
     @initialized = true
   end
 
-  # For testing purpose, module needs to be re-initialized
+  # For testing and chrooting purposes, module needs to be re-initialized
   def self.reset
     @initialized = false
+    @chroot = nil
   end
 
 end
