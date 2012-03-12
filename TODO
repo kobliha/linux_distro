@@ -1,9 +1,16 @@
+Testsuite
+---------
+- Check for an exception in distribution is not recognized
+
 Other Distros
+-------------
 - Involves, e.g., parsing /etc/lsb-release
 
 Library Paths
+-------------
 - Default paths to libraries
 - Useful, e.g., for installing libraries to the system (rake install)
 
 Distro Name and Version
+-----------------------
 - Involves parsing release files
