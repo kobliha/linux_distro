@@ -13,10 +13,10 @@ class LinuxDistroTest < Test::Unit::TestCase
   ### HELPER METHODS ###
 
   FILE_METHOD_DISTROS = {
-    'fedora'    => LinuxDistro::D_FEDORA,
-    'suse'      => LinuxDistro::D_SUSE,
-    'centos'    => LinuxDistro::D_CENTOS,
-    'mandriva'  => LinuxDistro::D_MANDRIVA,
+    :fedora             => LinuxDistro::D_FEDORA,
+    :suse               => LinuxDistro::D_SUSE,
+    :centos             => LinuxDistro::D_CENTOS,
+    :mandriva           => LinuxDistro::D_MANDRIVA,
   }
 
   def set_distro (distro)
@@ -35,31 +35,31 @@ class LinuxDistroTest < Test::Unit::TestCase
   ### TESTS ###
 
   def test_fedora?
-    set_distro 'fedora'
+    set_distro :fedora
 
     assert LinuxDistro::fedora?, "Should return true: #{LinuxDistro::fedora?}, Distro is: #{LinuxDistro::distro}"
   end
 
   def test_suse?
-    set_distro 'suse'
+    set_distro :suse
 
     assert LinuxDistro::suse?, "Should return true: #{LinuxDistro::suse?}, Distro is: #{LinuxDistro::distro}"
   end
 
   def test_centos?
-    set_distro 'centos'
+    set_distro :centos
 
     assert LinuxDistro::centos?, "Should return true: #{LinuxDistro::centos?}, Distro is: #{LinuxDistro::distro}"
   end
 
   def test_mandriva?
-    set_distro 'mandriva'
+    set_distro :mandriva
 
     assert LinuxDistro::mandriva?, "Should return true: #{LinuxDistro::mandriva?}, Distro is: #{LinuxDistro::distro}"
   end
 
   def test_distro
-    ['fedora', 'suse', 'centos', 'mandriva'].each do |distro|
+    [:fedora, :suse, :centos, :mandriva].each do |distro|
       set_distro distro
       assert_equal distro, LinuxDistro::distro, "Should return #{distro}, Distro is: #{LinuxDistro::distro}"
       # Needed for LinuxDistro to reinitialize

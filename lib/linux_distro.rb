@@ -2,10 +2,10 @@ require 'ftools'
 
 module LinuxDistro
 
-  D_FEDORA   = 'fedora'
-  D_SUSE     = 'suse'
-  D_CENTOS   = 'centos'
-  D_MANDRIVA = 'mandriva'
+  D_FEDORA   = :fedora
+  D_SUSE     = :suse
+  D_CENTOS   = :centos
+  D_MANDRIVA = :mandriva
 
   DISTRO_FILES = {
     D_FEDORA    => '/etc/fedora-release',
