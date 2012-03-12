@@ -31,6 +31,12 @@ LinuxDistro currently knows these distributions
 * CentOS
 * Mandriva
 
+##How to Build a Gem
+
+Simply run
+
+    gem build linux_distro.gemspec
+
 ##How Are the Distros Recognized
 
     /etc/fedora-release         --> Fedora
