@@ -2,4 +2,5 @@
 
 require "../lib/linux_distro"
 
-puts "Detected distro:       #{LinuxDistro::distro}"
+# Returns the detected Linux distribution
+puts "Detected distro: #{LinuxDistro::distro}"
