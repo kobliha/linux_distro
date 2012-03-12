@@ -15,8 +15,7 @@ module LinuxDistro
   }
 
   def self.distro
-    @distro = detect_distro unless @initialized
-    @initialized = true
+    init
 
     @distro
   end
@@ -46,6 +45,11 @@ module LinuxDistro
     end
 
     raise NotImplementedError, "Your distribution was not recognized"
+  end
+
+  def self.init
+    @distro = detect_distro unless @initialized
+    @initialized = true
   end
 
   # For testing purpose, module needs to be re-initialized
