@@ -2,6 +2,10 @@ Testsuite
 ---------
 - Check for an exception in distribution is not recognized
 
+Documentation
+-------------
+- Document functions
+
 Other Distros
 -------------
 - Involves, e.g., parsing /etc/lsb-release
